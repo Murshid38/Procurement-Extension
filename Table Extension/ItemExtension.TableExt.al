@@ -6,6 +6,7 @@ tableextension 50100 "Item Extension" extends Item
         {
             Caption = 'International Vendor Number';
             DataClassification = CustomerContent;
+            TableRelation = Vendor;
         }
         field(50101; "ATA(Aircraft Chapter)"; Text[100])
         {

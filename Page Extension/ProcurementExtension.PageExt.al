@@ -6,7 +6,6 @@ pageextension 50100 "Procurement Extension" extends "Item Card"
         {
             group(Procurement)
             {
-
                 field("International Vendor Number"; Rec."International Vendor Number")
                 {
                     Caption = 'International Vendor Number';
@@ -69,32 +68,32 @@ pageextension 50100 "Procurement Extension" extends "Item Card"
                 }
                 field("Aircraft Type"; Rec."Aircraft Type")
                 {
-                    Caption = 'International Vendor Number';
-                    ToolTip = 'Specifies the International Vendor Number';
+                    Caption = 'Aircraft Type';
+                    ToolTip = 'Specifies the Aircraft Type';
                     ApplicationArea = all;
                 }
                 field("FA Subclass"; Rec."FA Subclass")
                 {
-                    Caption = 'International Vendor Number';
-                    ToolTip = 'Specifies the International Vendor Number';
+                    Caption = 'FA Subclass';
+                    ToolTip = 'Specifies the FA Subclass';
                     ApplicationArea = all;
                 }
                 field("FA Class Code"; Rec."FA Class Code")
                 {
-                    Caption = 'International Vendor Number';
-                    ToolTip = 'Specifies the International Vendor Number';
+                    Caption = 'FA Class Code';
+                    ToolTip = 'Specifies the FA Class Code';
                     ApplicationArea = all;
                 }
                 field("Inv. Adj Ac"; Rec."Inv. Adj Ac")
                 {
-                    Caption = 'International Vendor Number';
-                    ToolTip = 'Specifies the International Vendor Number';
+                    Caption = 'Inv. Adj Ac';
+                    ToolTip = 'Specifies the Inventory Adjustment Account';
                     ApplicationArea = all;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
-                    Caption = 'International Vendor Number';
-                    ToolTip = 'Specifies the International Vendor Number';
+                    Caption = 'Location Code';
+                    ToolTip = 'Specifies the Location';
                     ApplicationArea = all;
                 }
             }

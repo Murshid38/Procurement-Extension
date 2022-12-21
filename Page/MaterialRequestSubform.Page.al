@@ -3,7 +3,8 @@ page 50104 "Material Request Subform"
     Caption = 'Material Request Subform';
     PageType = ListPart;
     SourceTable = "Material Request Line";
-    
+    AutoSplitKey = true;
+
     layout
     {
         area(content)
@@ -24,6 +25,16 @@ page 50104 "Material Request Subform"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Quantity field.';
+                }
+                field("Location Code"; Rec."Location Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Location Code.';
+                }
+                field("Aircraft Chapter"; Rec."Aircraft Chapter")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Aircraft Chapter.';
                 }
                 field("Reference Number"; Rec."Reference Number")
                 {
