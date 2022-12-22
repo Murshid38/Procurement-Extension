@@ -70,7 +70,7 @@ table 50102 "Material Request Header"
     }
     keys
     {
-        key(PK; No, "Line No.")
+        key(PK; No)
         {
             Clustered = true;
         }

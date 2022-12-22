@@ -85,32 +85,29 @@ page 50106 "Processing Mat Request Card"
         }
     }
 
-    // actions
-    // {
-    //     area(Processing)
-    //     {
-    //         action(SendForProcessing)
-    //         {
-    //             Caption = 'Send for Processing';
-    //             Image = SendApprovalRequest;
-    //             ApplicationArea = All;
-    //             ToolTip = 'Send for Processing';
-    //             Promoted = true;
-    //             PromotedCategory = Process;
-    //             PromotedOnly = true;
+    actions
+    {
+        area(Processing)
+        {
+            action(CreatePurchaseOrder)
+            {
+                Caption = 'Create Purchase Order';
+                Image = Create;
+                ApplicationArea = All;
+                ToolTip = 'Create Purchase Order';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
 
-    //             trigger OnAction()
-    //             var
-    //                 UserRecord: Record User;
-    //             begin
-    //                 UserRecord.SetRange("User Name", UserId);
-    //                 UserRecord.FindFirst();
-    //                 Rec.Status := Status::"Sent for Processing";
-    //                 Rec.ProcessedByName := UserRecord."Full Name";
-    //                 Rec."Sent for Processing Date" := Today;
-    //                 Rec.Modify();
-    //             end;
-    //         }
-    //     }
-    // }
+                trigger OnAction()
+                var
+                    CreatePurchaseOrderReport: Report "Create Purchase Order";
+                begin
+                    CreatePurchaseOrderReport.SetMaterialRequestHeader(Rec);
+                    CreatePurchaseOrderReport.Run();
+                end;
+            }
+        }
+    }
+
 }
