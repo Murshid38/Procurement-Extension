@@ -25,6 +25,7 @@ page 50104 "Material Request Subform"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Quantity field.';
+                    BlankZero = true;
                 }
                 field("Location Code"; Rec."Location Code")
                 {

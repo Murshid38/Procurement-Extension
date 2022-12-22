@@ -24,15 +24,18 @@ table 50103 "Material Request Line"
 
             trigger OnValidate()
             var
+                ItemRecord: Record Item;
             begin
                 if ItemRecord.Get("Part Number") then begin
                     "Location Code" := ItemRecord."Location Code";
+                    Description := ItemRecord.Description;
                     "Aircraft Type" := ItemRecord."Aircraft Type";
                     "Aircraft Chapter" := ItemRecord."ATA(Aircraft Chapter)";
                     "Reference Number" := ItemRecord."IPC (Reference Number)";
                 end
                 else begin
                     "Location Code" := '';
+                    Description := '';
                     "Aircraft Type" := '';
                     "Aircraft Chapter" := '';
                     "Reference Number" := '';
@@ -87,6 +90,4 @@ table 50103 "Material Request Line"
             Clustered = true;
         }
     }
-    var
-        ItemRecord: Record Item;
 }

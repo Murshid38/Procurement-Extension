@@ -78,7 +78,7 @@ table 50102 "Material Request Header"
 
     var
         PurchasesPayablesSetupRecord: Record "Purchases & Payables Setup";
-        NoSeriesMgt: codeunit NoSeriesManagement;
+        NoSeriesManagementCodeunit: codeunit NoSeriesManagement;
 
     trigger OnInsert()
     begin
@@ -90,7 +90,7 @@ table 50102 "Material Request Header"
     begin
         if "No" = '' then begin
             TestNoSeries();
-            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", Today, "No", "No. Series");
+            NoSeriesManagementCodeunit.InitSeries(GetNoSeriesCode(), xRec."No. Series", Today, "No", "No. Series");
         end;
     end;
 

@@ -1,10 +1,14 @@
-page 50103 "Material Request Card"
+page 50106 "Processing Mat Request Card"
 {
-    Caption = 'Material Request Card';
+    Caption = 'Processing Mat Request Card';
     PageType = Document;
     SourceTable = "Material Request Header";
     UsageCategory = Documents;
     ApplicationArea = all;
+    Editable = false;
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
 
     layout
     {
@@ -12,7 +16,6 @@ page 50103 "Material Request Card"
         {
             group(General)
             {
-                Editable = false;
                 field(No; Rec.No)
                 {
                     ApplicationArea = All;
@@ -67,7 +70,6 @@ page 50103 "Material Request Card"
             }
             group("Processed By Details")
             {
-                Editable = false;
                 field(ProcessedByName; Rec.ProcessedByName)
                 {
                     Caption = 'Name';
@@ -83,39 +85,32 @@ page 50103 "Material Request Card"
         }
     }
 
-    actions
-    {
-        area(Processing)
-        {
-            action(SendForProcessing)
-            {
-                Caption = 'Send for Processing';
-                Image = SendApprovalRequest;
-                ApplicationArea = All;
-                ToolTip = 'Send for Processing';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
+    // actions
+    // {
+    //     area(Processing)
+    //     {
+    //         action(SendForProcessing)
+    //         {
+    //             Caption = 'Send for Processing';
+    //             Image = SendApprovalRequest;
+    //             ApplicationArea = All;
+    //             ToolTip = 'Send for Processing';
+    //             Promoted = true;
+    //             PromotedCategory = Process;
+    //             PromotedOnly = true;
 
-                trigger OnAction()
-                var
-                    UserRecord: Record User;
-                begin
-                    Rec.TestField(RequestedByName);
-                    Rec.TestField(Auth);
-                    Rec.TestField("Staff No.");
-                    Rec.TestField(Date);
-                    if Confirm('Do you want to send this for processing?') then begin
-                        UserRecord.SetRange("User Name", UserId);
-                        UserRecord.FindFirst();
-                        Rec.Status := Status::"Sent for Processing";
-                        Rec.ProcessedByName := UserRecord."Full Name";
-                        Rec."Sent for Processing Date" := Today;
-                        Rec.Modify();
-                        Message('Sent for processing!');
-                    end;
-                end;
-            }
-        }
-    }
+    //             trigger OnAction()
+    //             var
+    //                 UserRecord: Record User;
+    //             begin
+    //                 UserRecord.SetRange("User Name", UserId);
+    //                 UserRecord.FindFirst();
+    //                 Rec.Status := Status::"Sent for Processing";
+    //                 Rec.ProcessedByName := UserRecord."Full Name";
+    //                 Rec."Sent for Processing Date" := Today;
+    //                 Rec.Modify();
+    //             end;
+    //         }
+    //     }
+    // }
 }
