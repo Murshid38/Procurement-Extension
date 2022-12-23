@@ -66,26 +66,4 @@ page 50102 "Material Requests"
             }
         }
     }
-
-    // actions
-    // {
-    //     area(Processing)
-    //     {
-    //         action(DeleteAll)
-    //         {
-    //             Caption = 'Delete All';
-    //             ApplicationArea = All;
-    //             ToolTip = 'Delete all records of material request line';
-    //             Image = Delete;
-
-    //             trigger OnAction()
-    //             begin
-    //                 MaterialRequestLineRecord.DeleteAll();
-    //             end;
-    //         }
-    //     }
-    // }
-
-    // var
-    //     MaterialRequestLineRecord: Record "Material Request Line";
 }

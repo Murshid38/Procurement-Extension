@@ -33,7 +33,6 @@ report 50100 "Create Purchase Order"
 
     procedure SetMaterialRequestHeader(var NewMaterialRequestHeader: Record "Material Request Header")
     begin
-        // Message('%1', NewVoucherHeader."No.");
         MaterialRequestHeader := NewMaterialRequestHeader;
     end;
 
@@ -53,7 +52,10 @@ report 50100 "Create Purchase Order"
     var
         PurchaseHeaderRec: Record "Purchase Header";
     begin
-        PurchaseHeaderRec.InsertRequestNo(MaterialRequestHeader, GetVendorNo(), GetVendorName());
+        if Confirm('Do you want create the Purchase Order?') then
+            PurchaseHeaderRec.InsertPurchaseHeaderRecord(MaterialRequestHeader, GetVendorNo(), GetVendorName())
+        else
+            CurrReport.Break();
     end;
 
     var

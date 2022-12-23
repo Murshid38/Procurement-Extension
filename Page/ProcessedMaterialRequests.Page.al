@@ -1,11 +1,11 @@
-page 50106 "Processing Mat Request Card"
+page 50107 "Processed Material Requests"
 {
-    Caption = 'Processing Mat Request Card';
-    PageType = Document;
+    ApplicationArea = All;
+    Caption = 'Processed Material Requests';
+    PageType = List;
     SourceTable = "Material Request Header";
-    UsageCategory = Documents;
-    ApplicationArea = all;
-    Editable = false;
+    UsageCategory = Lists;
+    SourceTableView = where(Status = filter(Processed));
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
@@ -14,7 +14,7 @@ page 50106 "Processing Mat Request Card"
     {
         area(content)
         {
-            group(General)
+            repeater(General)
             {
                 field(No; Rec.No)
                 {
@@ -26,29 +26,13 @@ page 50106 "Processing Mat Request Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Status field.';
                 }
-                field("Created Date"; Rec."Created Date")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Created Data field.';
-                }
                 field("Used for PO"; Rec."Used for PO")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Used for PO field.';
                 }
-            }
-            part(Lines; "Material Request Subform")
-            {
-                ApplicationArea = All;
-                Caption = 'Material Request Subform';
-                SubPageLink = "Material Request No." = field("No");
-                UpdatePropagation = Both;
-            }
-            group("Requested By Details")
-            {
                 field(RequestedByName; Rec.RequestedByName)
                 {
-                    Caption = 'Name';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the RequestedByName field.';
                 }
@@ -67,12 +51,8 @@ page 50106 "Processing Mat Request Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Date field.';
                 }
-            }
-            group("Processed By Details")
-            {
                 field(ProcessedByName; Rec.ProcessedByName)
                 {
-                    Caption = 'Name';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the ProcessedByName field.';
                 }
@@ -81,31 +61,6 @@ page 50106 "Processing Mat Request Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Sent for Processing Date field.';
                 }
-            }
-        }
-    }
-
-    actions
-    {
-        area(Processing)
-        {
-            action(CreatePurchaseOrder)
-            {
-                Caption = 'Create Purchase Order';
-                Image = Create;
-                ApplicationArea = All;
-                ToolTip = 'Create Purchase Order';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
-
-                trigger OnAction()
-                var
-                    CreatePurchaseOrderReport: Report "Create Purchase Order";
-                begin
-                    CreatePurchaseOrderReport.SetMaterialRequestHeader(Rec);
-                    CreatePurchaseOrderReport.Run();
-                end;
             }
         }
     }
