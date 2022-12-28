@@ -109,4 +109,10 @@ page 50106 "Processing Mat Request Card"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        myInt: Integer;
+    begin
+        CurrPage.Caption('CCC');
+    end;
 }

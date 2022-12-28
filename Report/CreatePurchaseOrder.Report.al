@@ -36,30 +36,18 @@ report 50100 "Create Purchase Order"
         MaterialRequestHeader := NewMaterialRequestHeader;
     end;
 
-    procedure GetVendorNo(): Code[20]
-    begin
-        if VendorRec.get(VendorID) then
-            exit(VendorRec."No.");
-    end;
-
-    procedure GetVendorName(): Text[100]
-    begin
-        if VendorRec.get(VendorID) then
-            exit(VendorRec.Name);
-    end;
-
     trigger OnPreReport()
     var
         PurchaseHeaderRec: Record "Purchase Header";
     begin
         if Confirm('Do you want create the Purchase Order?') then
-            PurchaseHeaderRec.InsertPurchaseHeaderRecord(MaterialRequestHeader, GetVendorNo(), GetVendorName())
+            PurchaseHeaderRec.CreatePurchaseOrder(MaterialRequestHeader, VendorID)
         else
             CurrReport.Break();
     end;
 
     var
         MaterialRequestHeader: Record "Material Request Header";
-        VendorRec: Record Vendor;
+        // VendorRec: Record Vendor;
         VendorID: Code[20];
 }

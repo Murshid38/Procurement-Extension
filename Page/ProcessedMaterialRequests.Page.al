@@ -6,6 +6,7 @@ page 50107 "Processed Material Requests"
     SourceTable = "Material Request Header";
     UsageCategory = Lists;
     SourceTableView = where(Status = filter(Processed));
+    CardPageId = "Processing Mat Request Card";
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
