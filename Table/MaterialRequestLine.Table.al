@@ -27,6 +27,7 @@ table 50103 "Material Request Line"
                 ItemRecord: Record Item;
             begin
                 if ItemRecord.Get("Part Number") then begin
+                    "ALT Part Number" := ItemRecord."Alternative Part 1";
                     "Location Code" := ItemRecord."Location Code";
                     Description := ItemRecord.Description;
                     "Aircraft Type" := ItemRecord."Aircraft Type";
@@ -34,6 +35,7 @@ table 50103 "Material Request Line"
                     "Reference Number" := ItemRecord."IPC (Reference Number)";
                 end
                 else begin
+                    "ALT Part Number" := '';
                     "Location Code" := '';
                     Description := '';
                     "Aircraft Type" := '';

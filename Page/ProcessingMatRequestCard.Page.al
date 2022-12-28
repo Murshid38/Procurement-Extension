@@ -98,6 +98,7 @@ page 50106 "Processing Mat Request Card"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedOnly = true;
+                Visible = IsVisible;
 
                 trigger OnAction()
                 var
@@ -109,10 +110,17 @@ page 50106 "Processing Mat Request Card"
             }
         }
     }
+
     trigger OnOpenPage()
-    var
-        myInt: Integer;
     begin
-        CurrPage.Caption('CCC');
+        if (Rec.Status = Rec.Status::Processed) then begin
+            CurrPage.Caption('Processed Material Request Card Page');
+            IsVisible := false;
+        end
+        else
+            IsVisible := true;
     end;
+
+    var
+        IsVisible: Boolean;
 }

@@ -48,6 +48,5 @@ report 50100 "Create Purchase Order"
 
     var
         MaterialRequestHeader: Record "Material Request Header";
-        // VendorRec: Record Vendor;
         VendorID: Code[20];
 }

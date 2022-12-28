@@ -8,8 +8,8 @@ page 50105 "Processing Material Requests"
     SourceTableView = where(Status = filter("Sent for Processing"));
     CardPageId = "Processing Mat Request Card";
     InsertAllowed = false;
-    ModifyAllowed = false;
     DeleteAllowed = false;
+    ModifyAllowed = false;
 
     layout
     {
@@ -35,7 +35,7 @@ page 50105 "Processing Material Requests"
                 field("Used for PO"; Rec."Used for PO")
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Used for PO field.';
+                    ToolTip = 'Specifies the value of the Used Data field.';
                 }
                 field(RequestedByName; Rec.RequestedByName)
                 {
@@ -60,7 +60,7 @@ page 50105 "Processing Material Requests"
                 field(ProcessedByName; Rec.ProcessedByName)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the ProcessedByName field.';
+                    ToolTip = 'Specifies the value of the Processed field.';
                 }
                 field("Sent for Processing Date"; Rec."Sent for Processing Date")
                 {
@@ -70,4 +70,6 @@ page 50105 "Processing Material Requests"
             }
         }
     }
+
+
 }
