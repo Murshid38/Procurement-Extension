@@ -26,16 +26,18 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
         // "Document Type" should be Order
 
         MaterialRequestLineRecord.SetRange("Material Request No.", Rec."Material Request No");
-        MaterialRequestLineRecord.FindFirst();
-        PurchaseLineRecord.Init();
-        PurchaseLineRecord."Document Type" := "Document Type"::Order;
-        PurchaseLineRecord."Document No." := Rec."No.";
-        PurchaseLineRecord."Line No." := MaterialRequestLineRecord."Line No.";
-        PurchaseLineRecord.Validate(Type, PurchaseLineRecord.Type::Item);
-        PurchaseLineRecord.Validate("No.", MaterialRequestLineRecord."Part Number");
-        PurchaseLineRecord.Validate("Location Code", MaterialRequestLineRecord."Location Code");
-        PurchaseLineRecord.Validate(Quantity, MaterialRequestLineRecord.Quantity);
-        PurchaseLineRecord.Insert();
+        if MaterialRequestLineRecord.FindFirst() then
+            repeat
+                PurchaseLineRecord.Init();
+                PurchaseLineRecord."Document Type" := "Document Type"::Order;
+                PurchaseLineRecord."Document No." := Rec."No.";
+                PurchaseLineRecord."Line No." := MaterialRequestLineRecord."Line No.";
+                PurchaseLineRecord.Validate(Type, PurchaseLineRecord.Type::Item);
+                PurchaseLineRecord.Validate("No.", MaterialRequestLineRecord."Part Number");
+                PurchaseLineRecord.Validate("Location Code", MaterialRequestLineRecord."Location Code");
+                PurchaseLineRecord.Validate(Quantity, MaterialRequestLineRecord.Quantity);
+                PurchaseLineRecord.Insert();
+            until MaterialRequestLineRecord.Next() = 0;
 
         Message('Purchase Order Created');
 

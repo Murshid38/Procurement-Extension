@@ -70,6 +70,4 @@ page 50105 "Processing Material Requests"
             }
         }
     }
-
-
 }
