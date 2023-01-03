@@ -98,7 +98,7 @@ page 50106 "Processing Mat Request Card"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedOnly = true;
-                Visible = IsVisible;
+                Visible = IsVisibleCreate;
 
                 trigger OnAction()
                 var
@@ -108,6 +108,19 @@ page 50106 "Processing Mat Request Card"
                     CreatePurchaseOrderReport.Run();
                 end;
             }
+            action(OpenTheDocument)
+            {
+                Caption = 'Open the document';
+                Image = Open;
+                ApplicationArea = All;
+                ToolTip = 'Open the purchase order';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                Visible = IsVisibleDoc;
+                RunObject = page "Purchase Order";
+                RunPageLink = "Material Request No" = field(No);
+            }
         }
     }
 
@@ -115,12 +128,16 @@ page 50106 "Processing Mat Request Card"
     begin
         if (Rec.Status = Rec.Status::Processed) then begin
             CurrPage.Caption('Processed Material Request Card Page');
-            IsVisible := false;
+            IsVisibleCreate := false;
+            IsVisibleDoc := true;
         end
-        else
-            IsVisible := true;
+        else begin
+            IsVisibleCreate := true;
+            IsVisibleDoc := false;
+        end;
     end;
 
     var
-        IsVisible: Boolean;
+        IsVisibleCreate: Boolean;
+        IsVisibleDoc: Boolean;
 }

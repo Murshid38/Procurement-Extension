@@ -31,7 +31,7 @@ report 50100 "Create Purchase Order"
         }
     }
 
-    procedure SetMaterialRequestHeader(var NewMaterialRequestHeader: Record "Material Request Header")
+    procedure SetMaterialRequestHeader(NewMaterialRequestHeader: Record "Material Request Header")
     begin
         MaterialRequestHeader := NewMaterialRequestHeader;
     end;

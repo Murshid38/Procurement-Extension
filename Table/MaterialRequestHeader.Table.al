@@ -111,7 +111,6 @@ table 50102 "Material Request Header"
 
     local procedure GetPurchasesSetup()
     begin
-        // Purchases.Get();
         PurchasesPayablesSetupRecord.Get();
     end;
 }
