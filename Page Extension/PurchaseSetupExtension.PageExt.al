@@ -9,6 +9,13 @@ pageextension 50101 "Purchase Setup Extension" extends "Purchases & Payables Set
                 ApplicationArea = all;
                 ToolTip = 'Specifies the Value of Material Request No Series';
             }
+
+            field("Vendor Invoice No."; Rec."Vendor Invoice No.")
+            {
+                ApplicationArea = all;
+                ToolTip = 'Specifies the Value of Vendor Invoice No Series';
+            }
+
         }
     }
 }

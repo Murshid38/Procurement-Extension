@@ -7,13 +7,13 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
             Caption = 'Material Request No';
             DataClassification = CustomerContent;
         }
+
     }
 
     procedure CreatePurchaseOrder(MaterialRequestHeader: Record "Material Request Header"; VendorID: Code[20])
     var
         PurchaseLineRecord: Record "Purchase Line";
         MaterialRequestLineRecord: Record "Material Request Line";
-        PurchaseHeaderRecord: Record "Purchase Header";
     begin
         Rec.Init();
         Rec."Document Type" := Rec."Document Type"::Order;
@@ -21,6 +21,7 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
         Rec.Validate("Buy-from Vendor No.", VendorID);
         Rec.Invoice := true;
         Rec.Receive := true;
+        InitInsert2();
         Rec.Insert(true);
 
         // Rec."No." and "Material Request No" are not same
@@ -47,7 +48,40 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
         MaterialRequestHeader."Used for PO" := true;
         MaterialRequestHeader.Modify();
 
-        Rec.SendToPosting(90);
+        if Rec.SendToPosting(90) then
+            Message('Purchase Order Posted Sucessfully');
 
     end;
+
+    procedure InitInsert2()
+    begin
+        if "Vendor Invoice No." = '' then begin
+            TestNoSeries2();
+            NoSeriesManagementCodeunit.InitSeries(GetNoSeriesCode2(), xRec."No. Series", Today, "Vendor Invoice No.", "No. Series");
+        end;
+    end;
+
+    procedure TestNoSeries2()
+    begin
+        GetPurchasesSetup();
+        PurchasesPayablesSetupRecord.TestField("Vendor Invoice No.");
+    end;
+
+    procedure GetNoSeriesCode2(): Code[20]
+    var
+        NoSeriesCode: Code[20];
+    begin
+        GetPurchasesSetup();
+        NoSeriesCode := PurchasesPayablesSetupRecord."Vendor Invoice No.";
+        exit(NoSeriesCode);
+    end;
+
+    local procedure GetPurchasesSetup()
+    begin
+        PurchasesPayablesSetupRecord.Get();
+    end;
+
+    var
+        PurchasesPayablesSetupRecord: Record "Purchases & Payables Setup";
+        NoSeriesManagementCodeunit: codeunit NoSeriesManagement;
 }
