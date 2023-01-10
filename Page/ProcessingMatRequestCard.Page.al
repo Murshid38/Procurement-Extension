@@ -121,6 +121,24 @@ page 50106 "Processing Mat Request Card"
                 RunObject = page "Purchase Order";
                 RunPageLink = "Material Request No" = field(No);
             }
+
+            // action(Post)
+            // {
+            //     ApplicationArea = Suite;
+            //     Caption = 'P&ost';
+            //     Ellipsis = true;
+            //     Image = PostOrder;
+            //     Promoted = true;
+            //     PromotedCategory = Category6;
+            //     PromotedIsBig = true;
+            //     ShortCutKey = 'F9';
+            //     ToolTip = 'Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books.';
+
+            //     trigger OnAction()
+            //     begin
+            //         PostDocument(CODEUNIT::"Purch.-Post (Yes/No)", "Navigate After Posting"::"Posted Document");
+            //     end;
+            // }
         }
     }
 

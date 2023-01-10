@@ -19,6 +19,8 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
         Rec."Document Type" := Rec."Document Type"::Order;
         Rec."Material Request No" := MaterialRequestHeader.No;
         Rec.Validate("Buy-from Vendor No.", VendorID);
+        Rec.Invoice := true;
+        Rec.Receive := true;
         Rec.Insert(true);
 
         // Rec."No." and "Material Request No" are not same
@@ -44,5 +46,8 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
         MaterialRequestHeader.Status := MaterialRequestHeader.Status::Processed;
         MaterialRequestHeader."Used for PO" := true;
         MaterialRequestHeader.Modify();
+
+        Rec.SendToPosting(90);
+
     end;
 }
