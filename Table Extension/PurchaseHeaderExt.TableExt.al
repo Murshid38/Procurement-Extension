@@ -7,7 +7,6 @@ tableextension 50102 "Purchase Header Ext" extends "Purchase Header"
             Caption = 'Material Request No';
             DataClassification = CustomerContent;
         }
-
     }
 
     procedure CreatePurchaseOrder(MaterialRequestHeader: Record "Material Request Header"; VendorID: Code[20])
